@@ -1,11 +1,11 @@
-#  import numpy as np
 import pandas as pd
 import pyinputplus as pyip
 import random
 
-#  import matplotlib as plt
-
 raw_data = pd.read_csv('urban_dictionary.csv')
+data = raw_data.drop('tags', axis=1)
+data = data.drop('date', axis=1)
+data['word_lower'] = data['word'].str.lower()
 
 """
 Index quantity : 4272
@@ -23,15 +23,11 @@ We're going to drop the columns tags and date. Later in the process,possibility 
 We're going to only do a simple research of word and a random function to return a word and her information
 """
 
-data = raw_data.drop('tags', axis=1)
-data = data.drop('date', axis=1)
 
-"""
-class Operations:
-
-    def __init__(self, user_choice):
-        self.user_choice = user_choice
-"""
+def treat_data():
+    raw_data = pd.read_csv('urban_dictionary.csv')
+    data = raw_data.drop('tags', axis=1)
+    data = data.drop('date', axis=1)
 
 
 def choice_switch(argument):
@@ -45,19 +41,19 @@ def choice_switch(argument):
 
 
 def search():
-    chosen_word = pyip.inputStr('Enter the word you are searching for : ')
+    chosen_word = pyip.inputStr('Enter the word you are searching for : ').lower()
     definition = None
     found = False
 
     try:
-        definition = data.loc[data['word'] == chosen_word, 'definition'].values[0]
+        definition = data.loc[data['word_lower'] == chosen_word, 'definition'].values[0]
         found = True
     except IndexError:
         print('No word found...')
     finally:
         if found:
             print('The word you searched was ' + chosen_word + '\n' +
-                  'Definition :' + definition)
+                  'Definition : ' + definition)
 
 
 def give_random_word():
@@ -85,13 +81,3 @@ while True:
         continue
     choice_switch(choice)
     break
-
-#  choice_switch(choice)
-
-"""
-if choice == 1:
-    chosen_word = pyip.inputStr('Enter the word you are searching for : ')
-
-if choice == 2:
-    give_random_word()
-"""
