@@ -2,9 +2,7 @@ import pandas as pd
 import pyinputplus as pyip
 import random
 
-raw_data = pd.read_csv('urban_dictionary.csv')
-data = raw_data.drop('tags', axis=1)
-data = data.drop('date', axis=1)
+data = pd.read_csv('urban_dictionary_cleaned.csv')
 data['word_lower'] = data['word'].str.lower()
 
 
