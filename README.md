@@ -15,6 +15,3 @@ The functions.py file contains all the functionalities on what the gui.py should
   2-Learn : Shows a random word and his definition to the user
   
 The urban_dictionary.csv file is the database coming from Kaggle. It should be replaced with a new one soon!
-
-  Thank you!
-  Mathias
